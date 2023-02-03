@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    const cart=["shoes","pants","kurta"];
+
+    //To place an order
+
+    //1. Create a order
+    //2. Proceed to payment
+    //3. print order
+
+   // createOrder();
+    //because create order is asynchromer, there is possibility that it proceed to payments without creating order
+    // so, we use callback function
+    function showSummary(){
+        console.log("will show summary");
+    }
+
+    function createOrder(callback){
+        setTimeout(()=>{
+            console.log("order created");
+            callback();
+        },3*1000);
+    }
+
+    createOrder(function(){
+        proceedToPayment(function(){
+           showSummary(); 
+        });
+    })
+
+    function proceedToPayment(callback){
+        setTimeout(()=>{         
+        console.log("payment");
+        callback();
+    },3000);
+    }
+
+    //callback Hell or Pyramid of Doom
+
+    //2. Inversion of Control: Does not have sureity that it will work
+
+
+
+
+
+
+</script>

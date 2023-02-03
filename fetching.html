@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="submit">Submit</button>
+    <div id="data"></div>
+
+
+    </body>
+</html>
+<script>
+     const url = "https://my-json-server.typicode.com/FreSauce/json-ipl/data";
+    fetchData();
+     async function fetchData() {
+  const response = await fetch(url); //kaato
+  var data = await response.json(); //gholo
+  console.log(data.length); // lagalo
+
+  data.sort(function (a, b) {
+    return a.NRR - b.NRR;
+  });
+
+  var list = `<table><tr>
+                        <th>No</th>
+                        <th>Team</th>
+                        <th>Matches</th>
+                        <th>Won</th>
+                        <th>Lost</th>
+                        <th>Tied</th>
+                        <th>NRR</th>
+                        <th>Points</th>
+                    </tr>
+                    <tbody>`;
+ var list;
+  for (var i = 0; i < data.length; i++) {
+    list += `<tr>
+    <td>${data[i].No}</td>
+    <td>${data[i].Team}</td>
+    <td>${data[i].Matches}</td>
+    <td>${data[i].Won}</td>
+    <td>${data[i].Lost}</td>
+    <td>${data[i].Tied}</td>
+    <td>${data[i].NRR}</td>
+    <td>${data[i].Points}</td>
+</tr>`;
+  }
+  list += `</tbody></table>`;
+
+  document.getElementById("data").innerHTML = list;
+}
+</script>

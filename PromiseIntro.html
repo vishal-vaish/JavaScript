@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //How to we solve inversion of control problem
+
+    //Promises
+
+    //Alternative to Callback
+
+    const cart=["shoes","pants","kurta"];
+
+    const orderId=createOrder();
+    console.log(5);
+    // proceedToPayment();
+
+    //We will make createOrder function return a promise
+    //We will store that promise in a variable
+
+    //Promise is nothing but an empty object with some data in it.
+    //{data:} 
+
+    //createOrder function is async and we don't know how much time will it take to execute
+    //{data:undefined}
+
+    //After Finishing Exection
+    //{data:orderId}
+
+    orderId.then(()=>{
+        //here we come to know that function has completed the execution
+        proceedToPayment();
+    })
+</script>

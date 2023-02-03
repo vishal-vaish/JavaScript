@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="time"></h1>
+</body>
+</html>
+<script>
+    setInterval(()=>{
+        const timeHeading=document.getElementById("time");
+        const currrentDate= new Date();
+        timeHeading.innerText=currrentDate.getHours()+":"+currrentDate.getMinutes()+":"+currrentDate.getSeconds();
+    },1000);
+</script>

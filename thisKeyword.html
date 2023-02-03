@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //callsite: from where the function is called
+    var firstName="shubham";
+    var lastname="pratap";
+
+    let  obj={
+        firstName:"vishal",
+        lastname:"vaish",
+        getFullName:function(){
+            console.log("this is",this.firstName)
+            console.log("full name is:",this.firstName+this.lastname)
+
+        }
+    }
+    const FullNameFunction=obj.getFullName;
+    //window object
+    //1.default binding
+    FullNameFunction();
+    //this=window/global
+
+    //2. implicit binding
+    obj.getFullName();
+
+    //whatever is the call site is also the value of the keyword
+
+    // 3.explicit binding
+    var name="hello"
+    var city="hardoi"
+    var obj2={
+        name:"achal",
+        city:"lucknow",
+        // getInfo:function()){
+        getInfo:function(age,rollNo) {
+        // console.log("Name is:",this.name," city is:",this.city);
+        console.log("Name is:",this.name," city is:",this.city," age is:",age,"Roll no:",rollNo);
+        }
+    }
+     let obj3={
+        name:"satyam",
+        city:"agra"
+     }
+
+     //sometime i want to explicitly define the value of this
+     //3.1
+     //call
+     //this keyword should point to object 3
+
+     obj2.getInfo.call(obj3,25,12535);
+
+
+     //3.2 apply
+     console.log("apply");
+    obj2.getInfo.apply(obj3,[24,1245]);
+
+    //3.3  bind
+    const copyFunction=obj2.getInfo.bind(obj3,[24,1]);
+    copyFunction();
+    //bind always create new function
+
+     //4. new binding
+
+     class Book{
+        constructor(noofpages){
+            this.noofpages=noofpages;
+        }
+     }
+     const somebook= new Book(20);
+    //  let somebook={
+    //     noofpages=20
+    //  }
+     //when a new keyword is used
+     //1.It create a new object
+     //2.this keyword starts pointing to the newly created object
+
+
+        var roomNo=50;
+        const demoObj={
+            roomNo:100,
+            foo:function(){
+                console.log("Room No is:",this.roomNo);
+        // function bar(){
+        //     //this reference is lostand it point to global
+        //         console.log("Room No is:",this.roomNo);
+        //     }
+            const bar=()=>{
+            //if the function is arrow than reference is not lost where if its is not arrow reference is lost as shown above
+                console.log("Room No is:",this.roomNo);
+            }
+            bar();
+        }
+        
+    }
+    demoObj.foo();
+
+
+
+</script>

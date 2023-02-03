@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let arr = ["vishal", "achal"];
+    //these are defined in __proto__ of the array
+
+    //arr.__proto__===arr.prototype
+    //arr.__proto__.__proto___===object.prototype
+    //arr.__proto__.__proto___.__proto___===null(means no further proto exist)
+
+
+    //every object in JS has a property called __proto
+    let obj = {
+            name:"vishal",
+            city:"sitapur"
+    }
+    let obj1={
+        name:"vaish"
+    }
+
+    obj1.__proto__=obj;
+    obj1.city="lucknow"
+    obj1.city="kanpur"
+    
+    //1. It sees in the object the property is presrnt
+    //2. If not, then check the __proto__ of the object
+    //3. If not even in __proto__ then check __proto__.__proto__ till the null is found
+    //4. the last obj it will found will be shown 
+
+</script>

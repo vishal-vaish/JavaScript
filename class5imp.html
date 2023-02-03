@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p class="para">This is paragraph</p>
+        <p class="blue">This is a paragraph with blue class</p>
+        <p class="blue">This is a paragraph with blue class</p>
+        <p class="green">This is a paragraph with green class</p>
+    </div>
+</body>
+</html>
+<script>
+    function changebackgroundColor(){
+     // to select by class
+    //   const para=document.getElementsByClassName("blue");
+        const para=document.getElementsByClassName("green");
+        console.log("Paragraph are:",para);
+    
+    // to select by paragraph
+    const para1=document.getElementsByTagName("p");
+        console.log("Paragraph are:",para1);
+    
+// to select the element with id
+
+const para2=document.querySelector("blue");
+// only return first element matching the criteria
+
+//const para2=document.querySelectorAll("blue");
+// to select all element matching the criteria
+console.log("Paragraph are:",para2);
+    }
+
+    changebackgroundColor();
+</script>

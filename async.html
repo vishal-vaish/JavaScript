@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // function foo(){
+    //     return new Promise(function(resolve,reject){
+    //         resolve("Some Data");
+    //     })
+    // }
+
+    //This whole foo function we can write as
+    function creatOrder(){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                resolve("Order created");
+            },2000);
+        })
+    }
+
+    function proceedToPayment(){
+        return new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                // resolve("Order created");
+                reject("Order created");
+            },2000);
+        })
+    }
+
+    async function foo(){
+        //when you add async keyword in front of regular function
+        //It automatically return a promise from that function
+        try{
+        const orderId=await creatOrder();
+        //pauses the Execution and waits for the promise to resolve or reject
+        //After the promise is resolved the function execution continue from the point where it left
+        await proceedToPayment();
+        console.log("Last Statement of Async Function");
+        }
+        catch(err){
+            console.log("Error in",err);
+        }
+    }
+
+    //1. await can only be use inside a async function
+    //Await keyword makes the function pause the execution and wait for the promise to resolve
+    foo();
+    console.log(3);
+    console.log(4);
+</script>

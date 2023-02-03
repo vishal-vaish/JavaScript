@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    const URL="https://api.github.com/users/vishal-vaish";
+
+    //Fetch return a promise
+    //fetch is asynchronous
+    const userData=fetch(URL); 
+    console.log("Another task");
+    console.log("user Data",userData);
+
+    userData.then(data=>{
+        console.log("Fetch Data",data);
+        //Fetch return readable stream that needs to be converted to plain object
+        //json() also return a promise
+        return data.json();
+    }).then((finalData)=>{
+        console.log("Final Data is",finalData)
+        const image=document.createElement("img");
+        image.setAttribute("src",finalData.avatar_url);
+        document.querySelector("body").appendChild(image)
+    })
+
+</script>

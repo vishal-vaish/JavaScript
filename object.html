@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let obj={
+        fullname: {
+            firstName:"Vishal",
+            lastname:"Vaish",
+        },
+        address:{
+            city:"Lucknow",
+            state:"Uttar Pradesh",
+        },
+        age: 25,
+    };
+    let objCopy=obj;
+   // objCopy.age=23;
+    //if you change in copy than the change is reflect in original
+    
+
+
+    const objCopyByvalue=Object.create(obj);
+    objCopyByvalue.age=26;
+
+    console.log("obj age",obj.age);
+    console.log("objcopy age", objCopyByvalue.age);
+
+    //object.create creates a shallow copy
+    // objCopyByvalue.address.city="kanpur";
+    // console.log("obj address",obj.address.city);
+    // console.log("objcopy address", objCopyByvalue.address.city);
+    //shallow copy means copy by value for a stage one
+    //it is not good for nested object
+
+    //2. JSON.stringify()
+    //convert the object to string
+    // const deepcopy=JSON.parse(JSON.stringify(obj));
+    // deepcopy.address.city="kanpur";
+    // console.log("obj address",obj.address.city);
+    // console.log("objcopy address", deepcopy.address.city);
+    // //convert the string to object again use JSON.parse
+
+    //3. Spread operator
+    // ...
+    //it create an object
+    const spreadobject={...obj};
+    console.log(spreadobject);
+
+
+
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <button onclick="submit()">Submit</button>
+    <div id="result"></div>
+</body>
+</html>
+<script>
+    function submit(){
+    let input=document.getElementById("input").value;
+    //let pattern=/vishal/;    //string to search(it is case sensitive)
+    //let pattern=/vishal/i;   //to make it case Insensitive
+  // let pattern=/^vishal$/;     //when only want particulator word only, it is also case sensitive
+   //  let pattern=/^[a-z][A-Z][0-9]$/;       //only all character between a to z(1 time only)
+  // let pattern=/^[a-zA-Z0-9]+$/;        //atleast one or more
+   //let pattern=/^[a-zA-Z0-9]*$/;        //atleast zero or more
+   let pattern=/^[a-zA-Z0-9@#$]+$/;        //to add special character
+
+
+    let check=pattern.test(input);//check is present or not give output in true and false
+    if(check) {
+        document.getElementById("result").innerText="Match is found"
+    }else{
+        document.getElementById("result").innerText="Match not found"
+    }
+    }
+</script>

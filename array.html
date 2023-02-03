@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    const arr=[1,2,3,4,5,6,7];
+    //we have square every element of the array
+    //.map is used to perform the operation to each elemenet of the array
+    const squareArray=arr.map(function(element,index){
+        //first argument is the element that you are traversing upon
+        //second argument is the index of the element you are transversing in 
+        // you have necessary to return the result
+        return element*element;
+    })
+    console.log("Two array are",arr,squareArray);
+
+//return all even number from the array
+// for this we use filter
+const evenArray=arr.filter(function(element,index){
+return element%2==0;//here element is checked
+})  
+console.log("Even array is:",evenArray); 
+//map is used when the new aray is of same length of its parent 
+//filter is used when the new array is of different length of its parent
+
+// const arr1=[1,2,3,4,5,6,7,8,9,10];
+// const tenNumber=arr1.filter(function(element,index){
+//     return index<5;
+// })
+// console.log(tenNumber)
+// const arraymultiply=tenNumber.map(function(element,index){
+//     return 2*element;
+// })
+// console.log("2 multiply array is:",arraymultiply);
+
+
+//reduce return the single element out of all the array elements
+const sum=arr.reduce(function(accumulator,currentValue) {
+    return accumulator+currentValue;
+},0)
+console.log("Sum of the array:",sum);
+
+//Array of object
+const arrayOfObject=[
+{    name:"vishal",
+    assignments:4,
+},{
+    name:"achal",
+    assignments:2, 
+},{
+    name:"anshika",
+    assignments:3,
+}]
+//find the object in the array where Name is vishal
+//Filter tries to find all the entries that match the criteria
+//Find return the first entry that matches the criteria
+const name=arrayOfObject.find(function(currentObject){
+    return currentObject.name==="vishal"
+})
+console.log("Name to find",name)
+
+//findIndex return the index
+// if no index is found than in findIndex it will return -1 and in find it will return the undefiend
+const name1=arrayOfObject.findIndex(function(currentObject){
+    return currentObject.name==="vishal"
+})
+console.log("Name Index",name1)
+
+//traversal of an object
+for(let property in arrayOfObject) {
+    console.log("Current Property is:",property);
+    //how to access values of object
+    //if the key name is variable
+    console.log("current values",arrayOfObject[property]);
+}
+
+for(let element of arr){
+    console.log("Current element is", element);
+}
+
+//for in works for Object
+//for of works for Arrays
+
+arr.forEach(function(currentElement){
+    console.log("current for each element is",currentElement);
+})
+console.log("After array is",arr);
+//for each makes changes to the actual array but map does not
+//for each does not allow you to return anything
+//for each is used for iteration
+
+
+
+</script>

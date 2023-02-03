@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    //We can make Javascript Asynchronus
+
+    //Achieving more than one task at a time
+    //Single Thread 
+
+    //after 3 seconds I want tp print Hello World
+
+    console.log(1);
+    //settimeout(callback,timeinmillisecond)
+    //1ms=1000s
+
+    setTimeout(()=>{
+        console.log("Hello World");
+    },3*1000);
+    //When these many seconds are completed than only the function is executed 
+
+    console.log(3);
+
+    //output
+    //1
+    //3
+    //Hello World
+
+    //where setInterval excute the function after every given second
+    const intervalid=setInterval(()=>{
+        console.log("Hello World how are you");
+    },1*1000);
+
+    setTimeout(()=>{
+        //to stop this interval
+        clearInterval(intervalid);
+    },10*1000);
+    
+    console.log(6);
+
+
+</script>

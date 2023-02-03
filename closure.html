@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function x(){
+        var a=7;
+        function y(){
+            //1. It will check the local memory
+            //2. Lexical Parent
+            //3. Parent Lexical Scope+ Local Memory
+            console.log(a);
+        }
+        return y;
+    }
+    var z=x();
+    console.log("z is:",z);
+    //type of z--> function
+    //z();
+
+    //function bundled along with it's lexical scope is closure
+    
+    //when y is returned, not only the function is returned but the entire closue(function+ lexical scope) 
+
+    function z(){
+        var b=900;
+        function x(){
+            var a=7;
+            function y(){
+                console.log(a,b);
+            }
+            y();
+        }
+        x();
+    }
+    z();
+
+    //A closure is a function that has access to its outer function scope even after the function is returned
+
+</script>

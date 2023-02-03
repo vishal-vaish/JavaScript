@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    const cart=["shoes","pants","kurta"];
+    function validateCart(){
+        return true;
+    }
+
+    function proceedToPayment(orderId){
+        return new Promise(function(resolve,reject){
+            if(!orderId){
+                reject(new Error("Order Id is required"));
+            }
+
+            setTimeout(()=>{
+                resolve("Payment Successful");
+            },3000);
+        })
+    }
+    function createOrder(){
+        //to create a Promise use a promise constructor and pass it a callback
+        const pr= new Promise(function(resolve,reject){
+            //resolve and reject are both function
+            //resolve take the promise to fullfilled state
+            //reject take the promise to rejected state
+            if(!validateCart()){
+                reject(new Error("Cart is not valid"));
+            }else{
+                const orderId="12345";
+                //it will take the ptomise to fullfilled state
+                //In resolve you can pass any data
+                resolve(orderId);
+            }
+        })
+
+        return pr;
+    }
+//create order function return a promise
+// A Promise can be know if a promise is completed or not with a signal called then
+
+createOrder().then(function(data){
+    //if resolve
+    console.log("orderId is:",data);
+    //In order to give data to next then you need to return it
+    return data;
+}).then((previousThenData)=>{
+    //this then will receive the data from immediately previous then
+    return 
+    proceedToPayment(previousThenData);
+}).then((paymentData)=>{
+    console.log("Payment Data is:",paymentData);
+}).catch(err=>{
+    console.log("Error is:",err.message);
+})
+
+
+
+
+</script>

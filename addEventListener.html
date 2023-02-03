@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">Submit</button>
+    <div>
+        <p id="toggle">This paragraph will toggle</p>
+        <button id="btn1" >toggle</button>
+    </div>
+
+</body>
+</html>
+<script>
+    //when button is clicked do something
+    const buttonElement=document.getElementById("btn");
+    buttonElement.addEventListener("click",function(event){
+        console.log("button clicked");
+    })
+
+    //callBack Function: A function that executes once the other thing has completed
+    //here above function of click is callback function 
+    const buttonElement1=document.getElementById("btn1");
+    let hidden=false;
+    buttonElement1.addEventListener("click",function(){
+        const para=document.getElementById("toggle");
+        if(hidden) {
+            para.style.display="block";
+            hidden=false;
+        }
+        else{
+            para.style.display="none";
+            hidden=true;
+        }
+    })
+
+
+</script>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Game</title>
+</head>
+<body>
+    <label for="Timer" class="timerLabel">Timer</label>
+    <div class="timer" id="timer">0</div>
+    <label for="wpm" class="wpmLabel">WPM</label>
+    <div class="wpm" id="wpm">0</div>
+    <div class="container" id="container">
+        <div class="quote-display" id="quoteDisplay"></div>
+    </div>
+</body>
+</html>
+<style>
+    *{
+        box-sizing: border-box;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 10px;
+        background-color: whitesmoke;
+    }
+    .container{
+        background-color: yellow ;
+        color: black;
+        padding: 1rem;
+        border-radius:0.5rem;
+        width: 700px;
+        max-width: 90%;
+        border: 1px solid black;
+    }
+    .wpm,.wpmLabel{
+        columns: brown;
+        position: absolute;
+        top: 6rem;
+        font-size: 3rem;
+        font-weight: bold;
+    }
+    .timer,.timerLabel{
+        position: absolute;
+        top: 2rem;
+        font-size: 3rem;
+        color: red;
+        font-weight: bold;
+    }
+    .timerLabel,.wpmLabel{
+        left: 50rem;
+    }
+    .quote-display{
+        margin-bottom: 1rem;
+        margin-left:calc(1rem+2px);
+    }
+    .container-focus{
+        border: 3px solid black;
+    }
+    .quote-display .correct{
+        color: green;
+    }
+    .incorrect{
+       color :red;
+       text-decoration: underline; 
+    }
+</style>
+<script>
+    
+    const RANDOM_QUOTE_API_URL="https://api.quotable.io/random";
+    const container=document.getElementById("container");
+    const quoteDisplayElement=document.getElementById("quoteDisplay");
+    const timerElement=document.getElementById("timer");
+    const wpmElement=document.getElementById("wpm");
+
+    let timerID;
+    let strokes
+    let isTimerStarted=false
+    let quote;
+    let currentIndex=0
+
+    window.addEventListener("click", (e) =>{
+        if(document.getElementById("container").contains(e.target)){
+            if(!isTimerStarted) {
+                container.classList.add("container-focus");
+                startTimer();
+            }
+        } else{
+            container.classList.remove("container-focus");
+            timerElement.innerText=0;
+            stopTimer();
+            currentIndex=0;
+            quoteDisplayElement.childNodes.forEach((node) => {
+                node.classList.remove("correct");
+                node.classList.remove("incorrect")
+            });
+        }
+    });
+
+    function calculatewpm(){
+        if(getTimerTime()>0){
+            wpmElement.innerText=Math.round(
+                parseFloat(correctStrokes()) / 5.0 / (parseFloat(getTimerTime()) /60.0)
+            );
+        }
+    }
+    window.addEventListener("keydown",(e)=>{
+        if(isTimerStarted) {
+    var charCode=e.keyCode
+    if(
+        (charCode>64 && charCode<91) ||
+        (charCode >96 && charCode <123)||
+        charCode===32 || charCode===188 || charCode===186 ||
+        charCode===222 || charCode===190 || charCode===191 ||
+        charCode ===49 || charCode ===189) {
+            if(quote[currentIndex]==e.key) {
+                quoteDisplayElement.childNodes[currentIndex].classList.add("correct");
+                quoteDisplayElement.childNodes[currentIndex].classList.remove("incorrect");
+                strokes[currentIndex]=1;
+            } else{
+                quoteDisplayElement.childNodes[currentIndex].classList.add("incorrect");
+                quoteDisplayElement.childNodes[currentIndex].classList.remove("correct");
+                strokes[currentIndex]=0;
+            }
+            calculatewpm();
+            currentIndex++;
+            if(currentIndex === quote.length){
+                currentIndex=0;
+                renderNewQuote();
+            }
+        } else if(charCode === 8) {
+            if(currentIndex === 0) return;
+            currentIndex--;
+            quoteDisplayElement.childNodes[currentIndex].classList.remove("correct");
+            quoteDisplayElement.childNodes[currentIndex].classList.remove("incorrect");
+        } else {
+            console.log("not a key");
+        }
+        }
+    });
+
+    const getRandomQuote=() => {
+        return fetch(RANDOM_QUOTE_API_URL)
+        .then((response) => response.json())
+        .then((data) => data.content);
+    };
+
+    function correctStrokes() {
+        let count=0;
+        strokes.forEach((stroke)=>{
+            if(stroke) count++;
+        });
+        return count;
+    }
+
+    const renderNewQuote=async()=>{
+        quote=await getRandomQuote();
+        if(isTimerStarted){
+            stopTimer();
+            startTimer();
+        }
+        currentIndex=0;
+        strokes=new Array(quote.length);
+        strokes.fill(0);
+        quoteDisplayElement.innerHTML="";
+        quote.split("").forEach((char) => {
+            const charspan=document.createElement("span");
+            charspan.innerText=char;
+            quoteDisplayElement.appendChild(charspan)
+        })
+    }
+
+    let StartTime;
+    function startTimer(){
+        isTimerStarted=true;
+        timerElement.innerText=0;
+        StartTime= new Date();
+        timerID=setInterval(() => {
+            timer.innerText=getTimerTime();
+        },1000);
+    }
+    function getTimerTime(){
+        return Math.floor((new Date()-StartTime) /1000);
+    }
+    function stopTimer(){
+        isTimerStarted=false;
+        clearInterval(timerID);
+    }
+    renderNewQuote();
+
+
+
+
+
+</script>
+
+

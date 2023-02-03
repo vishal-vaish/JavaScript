@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <p class="para">This is paragraph</p>
+        <p class="blue">This is a paragraph with blue class</p>
+        <p class="blue">This is a paragraph with blue class</p>
+        <p class="green">This is a paragraph with green class</p>
+        <p class="content" id="content">Content will be added here
+        </p>
+        <!-- <p class="content" >Content will be added here
+            <p>Hello</p>
+        </p> -->
+
+    </div>
+</body>
+</html>
+
+<script>
+    //create element
+    const pElement=document.createElement("p");
+  //  Write content in this element
+  //it allows to write a full fledged HTML in the element 
+ // pElement.innerHTML="<p>This is content in para</p>";
+
+  //it only allow to write text in a element
+  pElement.innerText="This is content in para";
+
+  const para=document.getElementById("content");
+  //keep the existing children as it is, but also add the newly created div element as a Child
+  para.appendChild(pElement);
+
+</script>
